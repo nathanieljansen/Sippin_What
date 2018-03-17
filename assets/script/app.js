@@ -1,12 +1,19 @@
-$('input.autocomplete').autocomplete({
-  data: {
-    "Apple": null,
-    "Microsoft": null,
-    "Google": 'https://placehold.it/250x250'
-  },
-  limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-  onAutocomplete: function (val) {
-    // Callback function when value is autcompleted.
-  },
-  minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+
+var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=steak&maxPrice=50"
+
+$(".btn").click(function () {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=chicken&maxPrice=50",
+    "method": "GET",
+    "headers": {
+      "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
+      "Cache-Control": "no-cache",
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  })
 });
