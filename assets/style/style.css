@@ -7,7 +7,7 @@ body {
 }
 
 .nav-wrapper {
-  background: #5b0b0b;
+  background: #5b0b0b !important;
 }
 
 #autocomplete-input {
