@@ -13,9 +13,10 @@ body {
 #autocomplete-input {
   background-color: white;
   color: black;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
-.button {
-  background-color: black;
+.btn {
+  background-color: #8f8023 !important;
+  border-radius: 5px !important;
 }
