@@ -1,0 +1,11 @@
+body {
+  font-family: 'Fjalla One', sans-serif;
+  background: url("https://s3.favim.com/orig/44/drink-glass-love-wine-Favim.com-371290.gif") no-repeat center fixed;
+  background-size: cover;
+  color: white;
+  margin-top: 4%;
+}
+
+.navbar {
+  color: black;
+}
