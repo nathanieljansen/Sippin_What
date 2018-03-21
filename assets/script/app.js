@@ -1,3 +1,13 @@
+var config = {
+  apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
+  authDomain: "sippin-what.firebaseapp.com",
+  databaseURL: "https://sippin-what.firebaseio.com",
+  projectId: "sippin-what",
+  storageBucket: "sippin-what.appspot.com",
+  messagingSenderId: "175010578796"
+};
+firebase.initializeApp(config);
+
 $(function () {
 
   $(".btn").click(function () {
