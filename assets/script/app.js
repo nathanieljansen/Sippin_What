@@ -27,20 +27,23 @@ $(function () {
       }
     }
     $.ajax(settings).then(function (response) {
-      console.log(response);
-        if (response.status == "failure") {
-          console.log(response.message)
-        }
-      })
-      
+      console.log(response)
+      if (response.status === "failure") {
+        console.log(response.message)
+      }
+      if (response.pairingText === "") {
+        console.log("we don't have dat")
+      }
+    })
+
     var newFood = {
       newFood: textInput,
     }
-      database.ref().push(newFood);
-      $(".autocomplete").val("");
-    });
-    database.ref().on("child_added", function (childSnapshot, prevChildKey) {
-      console.log(childSnapshot.val());
-    });
+    database.ref().push(newFood);
+    $(".autocomplete").val("");
   });
+  database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+    console.log(childSnapshot.val());
+  });
+});
 
