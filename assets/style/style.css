@@ -10,6 +10,7 @@ body {
   background: #5b0b0b !important;
 }
 
+
 #autocomplete-input {
   background-color: white;
   color: black;
@@ -30,4 +31,8 @@ body {
 
 .preText {
   font-size: 11px !important;
+}
+
+#image {
+  text-align: center !important;
 }
