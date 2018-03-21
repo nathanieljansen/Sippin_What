@@ -14,6 +14,8 @@ $(function () {
 
   $(".btn").click(function () {
     event.preventDefault();
+    $(".input-field").hide();
+    $(".mainHeader").text("WHAT YOU'RE SIPPIN'")
     var textInput = $(".autocomplete").val().trim().toLowerCase();
     var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
     var settings = {
