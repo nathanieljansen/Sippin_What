@@ -10,6 +10,10 @@ body {
   background: #5b0b0b !important;
 }
 
+.barnd-logo {
+  padding: 10px !important;
+}
+
 #autocomplete-input {
   background-color: white;
   color: black;
@@ -30,4 +34,8 @@ body {
 
 .preText {
   font-size: 11px !important;
+}
+
+#image {
+  text-align: center !important;
 }
