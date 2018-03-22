@@ -32,8 +32,6 @@ $(function () {
 
     $(".btn").click(function () {
       event.preventDefault();
-      $(".input-field").hide();
-      $(".mainHeader").text("WHAT YOU'RE SIPPIN'")
       var textInput = $(".autocomplete").val().trim().toLowerCase();
       var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
       var wineAPI = {
@@ -49,11 +47,13 @@ $(function () {
       $.ajax(wineAPI).then(function (response) {
         console.log(response)
         if (response.status === "failure") {
-          console.log(response.message)
+          $("#autocomplete-input").text(response.message)
         }
-        if (response.pairingText === "") {
-          console.log("we don't have dat")
+        else if (response.pairingText === "") {
+          $("#autocomplete-input").html("we don't have dat")
         }
+        else $(".input-field").hide();
+        $(".mainHeader").html("WHAT YOU'RE SIPPIN'")
       })
 
       var newFood = {
