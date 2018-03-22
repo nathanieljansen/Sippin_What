@@ -37,42 +37,6 @@ $(".btn").click(function () {
 ///if else statement for no wine found v. wine 
 // if response.status append error else run normally?
 
-<<<<<<< HEAD
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-
-    var p = $("<p>");
-    p.text(response.pairingText);
-    $("#words").append(p);
-
-    var description = $("<p>");
-    description.text(response.productMatches[0].description);
-    $("#words").append(description);
-    
-    var img = $("<img>");
-    img.attr("src", response.productMatches[0].imageUrl);
-    $("#image").append(img);
-
-    var title = $("<p>");
-    title.text(response.productMatches[0].title)
-    $("#image").append(title);
-
-
-///if else statement for no wine found v. wine 
-// if response.status append error else run normally?
-
-
-    })
-    $(".autocomplete").val("");
-
-    // $("#words").on("click", "btn" function(event) {
-    //   $("#words").empty();
-
-    // });
-
-
-=======
->>>>>>> fb93353018398d67c4907f51f4cde8d03895aafe
   })
   $(".autocomplete").val("");
 
