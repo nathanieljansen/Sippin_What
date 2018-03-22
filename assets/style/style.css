@@ -10,9 +10,12 @@ body {
   background: #5b0b0b !important;
 }
 
+<<<<<<< HEAD
 .barnd-logo {
   padding: 10px !important;
 }
+=======
+>>>>>>> fb93353018398d67c4907f51f4cde8d03895aafe
 
 #autocomplete-input {
   background-color: white;
