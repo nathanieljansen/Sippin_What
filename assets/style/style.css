@@ -36,3 +36,7 @@ body {
 #image {
   text-align: center !important;
 }
+
+.brand-logo {
+  margin-left: 15px;
+}
