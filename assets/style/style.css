@@ -40,3 +40,8 @@ body {
 .brand-logo {
   margin-left: 15px;
 }
+
+#reset {
+  background-color: #8f8023 !important;
+  border-radius: 5px !important;
+}
