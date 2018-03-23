@@ -29,16 +29,6 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-      if (response.status === "failure") {
-        $("#autocomplete-input").text(response.message)
-      }
-      else if (response.pairingText === "") {
-        $("#autocomplete-input").html("we don't have dat")
-      }
-      else {
-        $(".input-field").hide();
-        $(".mainHeader").html("WHAT YOU'RE SIPPIN'")
-      }
 
       var p = $("<p>");
       p.text(response.pairingText);
@@ -55,6 +45,18 @@ $(function () {
       var title = $("<p>");
       title.text(response.productMatches[0].title)
       $("#image").append(title);
+
+      if (response.status === "failure") {
+        $("#autocomplete-input").text(response.message)
+      }
+      else if (response.pairingText === "") {
+        $("#autocomplete-input").html("we don't have dat")
+      }
+      else {
+        $(".input-field").hide();
+        $(".mainHeader").html("WHAT YOU'RE SIPPIN'")
+      }
+
 
     });
 
