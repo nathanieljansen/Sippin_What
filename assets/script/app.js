@@ -68,7 +68,7 @@ $(function () {
   });
 
   $(".autocomplete").keyup(function (event) {
-    var letterinput = $(".autocomplete");
+    var letterinput = $(".autocomplete").val();
     var autocompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=" + letterinput;
     var autocompleteAPI = {
       "async": true,
