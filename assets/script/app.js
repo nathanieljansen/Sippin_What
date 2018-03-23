@@ -72,14 +72,13 @@ $(function () {
       "async": true,
       "crossDomain": true,
       "url": autocompleteURL,
-      "Accept": "application/json",
       "method": "GET",
       "headers": {
         "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
         "Cache-Control": "no-cache",
       }
     }
-    $.ajax(autocompleteURL).then(function (response) {
+    $.ajax(autocompleteAPI).then(function (response) {
       console.log(response)
     })
   })
