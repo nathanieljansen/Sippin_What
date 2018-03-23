@@ -33,7 +33,9 @@ $(".btn").click(function () {
     title.text(response.productMatches[0].title)
     $("#image").append(title);
 
-
+    var no = $("<p>");
+    no.text(response.status);
+    $("#words").append(no);
 ///if else statement for no wine found v. wine 
 // if response.status append error else run normally?
 
