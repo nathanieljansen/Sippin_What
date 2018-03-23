@@ -46,6 +46,11 @@ $(function () {
       title.text(response.productMatches[0].title)
       $("#image").append(title);
 
+      var reset = $("<button>");
+      reset.text("New Search");
+      reset.attr("id", "reset");
+      $("#image").append(reset);
+
       if (response.status === "failure") {
         $("#autocomplete-input").text(response.message)
       }
@@ -57,8 +62,16 @@ $(function () {
         $(".mainHeader").html("WHAT YOU'RE SIPPIN'")
       }
 
+      $("#reset").on('click', function(){
+        $("#words").empty();
+        $("#image").empty();
+        $(".input-field").show();
+      });
 
     });
+
+   
+
 
     var newFood = {
       newFood: textInput,
