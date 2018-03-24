@@ -27,7 +27,7 @@ function initMap() {
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
         location: pos,
-        radius: 1500,
+        radius: 2000,
         type: ['liquor_store',]
       }, callback);
       map.setCenter(pos);
