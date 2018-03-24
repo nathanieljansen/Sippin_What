@@ -123,21 +123,13 @@ $(function () {
       $("#image").append(title);
       $(".wineSwipe").show();
 
-      // var reset = $("<button>");
-      // reset.text("New Search");
-      // reset.attr("id", "reset");
-      // $("#image").append(reset);
-
       if (response.status === "failure") {
         $("#autocomplete-input").text(response.message)
       }
       else if (response.pairingText === "") {
         $("#autocomplete-input").html("we don't have dat")
       }
-      else {
-        $(".input-field").hide();
-        $(".mainHeader").hide();
-      }
+
 
       $("#reset").on('click', function(){
         $("#words").empty();
