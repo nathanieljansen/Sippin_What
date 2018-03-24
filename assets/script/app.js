@@ -1,4 +1,5 @@
 $(function () {
+  $('.parallax').parallax();
 
   var config = {
     apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
@@ -59,7 +60,7 @@ $(function () {
       }
       else {
         $(".input-field").hide();
-        $(".mainHeader").html("WHAT YOU'RE SIPPIN'")
+        $(".mainHeader").hide();
       }
 
       $("#reset").on('click', function(){
@@ -80,23 +81,23 @@ $(function () {
     $(".autocomplete").val("");
   });
 
-  $(".autocomplete").keyup(function (event) {
-    var letterinput = $(".autocomplete").val();
-    var autocompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=" + letterinput;
-    var autocompleteAPI = {
-      "async": true,
-      "crossDomain": true,
-      "url": autocompleteURL,
-      "method": "GET",
-      "headers": {
-        "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
-        "Cache-Control": "no-cache",
-      }
-    }
-    $.ajax(autocompleteAPI).then(function (response) {
-      console.log(response)
-    })
-  })
+  // $(".autocomplete").keyup(function (event) {
+  //   var letterinput = $(".autocomplete").val();
+  //   var autocompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/autocomplete?number=10&query=" + letterinput;
+  //   var autocompleteAPI = {
+  //     "async": true,
+  //     "crossDomain": true,
+  //     "url": autocompleteURL,
+  //     "method": "GET",
+  //     "headers": {
+  //       "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
+  //       "Cache-Control": "no-cache",
+  //     }
+  //   }
+  //   $.ajax(autocompleteAPI).then(function (response) {
+  //     console.log(response)
+  //   })
+  // })
 
   database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
