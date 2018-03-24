@@ -4,7 +4,7 @@
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 var map, infoWindow;
-$(".wineSwipe").hide();
+// $(".wineSwipe").hide();
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 39.7392, lng: -104.9903 },
@@ -129,13 +129,6 @@ $(function () {
       else if (response.pairingText === "") {
         $("#autocomplete-input").html("we don't have dat")
       }
-
-
-      $("#reset").on('click', function(){
-        $("#words").empty();
-        $("#image").empty();
-        $(".input-field").show();
-      });
 
     });
 

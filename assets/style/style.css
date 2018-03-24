@@ -27,6 +27,18 @@ body {
   border-radius: 5px !important;
 }
 
+/* .active {
+  color: #5b0b0b !important;
+} */
+
+a {
+  color: #8f8023 !important;
+}
+
+.tabs .indicator {
+  background-color: #5b0b0b !important;
+}
+
 .preText {
   font-size: 11px !important;
 }
@@ -37,6 +49,7 @@ body {
 
 .brand-logo {
   margin-left: 15px;
+  color: white !important;
 }
 
 .parallax-container {
