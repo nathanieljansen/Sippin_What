@@ -4,6 +4,7 @@
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 var map, infoWindow;
+$(".wineSwipe").hide();
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 39.7392, lng: -104.9903 },
@@ -28,7 +29,7 @@ function initMap() {
       service.nearbySearch({
         location: pos,
         radius: 2000,
-        type: ['liquor_store',]
+        type: ['liquor_store']
       }, callback);
       map.setCenter(pos);
     }, function () {
@@ -88,7 +89,7 @@ $(function () {
 
 
   $(".btn").click(function () {
-
+    
     event.preventDefault();
     var textInput = $(".autocomplete").val().trim().toLowerCase();
     var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
@@ -120,11 +121,12 @@ $(function () {
       var title = $("<p>");
       title.text(response.productMatches[0].title)
       $("#image").append(title);
+      $(".wineSwipe").show();
 
-      var reset = $("<button>");
-      reset.text("New Search");
-      reset.attr("id", "reset");
-      $("#image").append(reset);
+      // var reset = $("<button>");
+      // reset.text("New Search");
+      // reset.attr("id", "reset");
+      // $("#image").append(reset);
 
       if (response.status === "failure") {
         $("#autocomplete-input").text(response.message)
