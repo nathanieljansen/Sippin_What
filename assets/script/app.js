@@ -74,6 +74,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(function () {
   $('.parallax').parallax();
  
+  function pageScroll() {
+    window.scrollBy(0, 1);
+    scrolldelay = setTimeout(pageScroll, 10);
+  }
 
   var config = {
     apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
@@ -88,9 +92,9 @@ $(function () {
   var database = firebase.database();
 
 
-  $(".btn").click(function () {
-    
+  $(".btn").click(function () {    
     event.preventDefault();
+    pageScroll();
     var textInput = $(".autocomplete").val().trim().toLowerCase();
     var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
     var wineAPI = {
@@ -105,6 +109,7 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
+      var otherWines = response.pairedWines[0];
 
       var p = $("<p>");
       p.text(response.pairingText);
@@ -129,6 +134,39 @@ $(function () {
       else if (response.pairingText === "") {
         $("#autocomplete-input").html("we don't have dat")
       }
+
+      var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
+      var comparableAPI = {
+        "async": true,
+        "crossDomain": true,
+        "url": comparableWineQueryURL,
+        "method": "GET",
+        "headers": {
+          "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
+          "Cache-Control": "no-cache",
+        }
+      }
+      $.ajax(comparableAPI).then(function (response) {
+        console.log(response.recommendedWines)
+        var img = $("<img>");
+        img.attr("src", response.recommendedWines[0].imageUrl);
+        $("#otherWineImage1").append(img);
+        var img = $("<img>");
+        img.attr("src", response.recommendedWines[1].imageUrl);
+        $("#otherWineImage2").append(img);
+        // var img = $("<img>");
+        // img.attr("src", response.recommendedWines[2].imageUrl);
+        // $("#otherWineImage3").append(img);
+        var title = $("<p>");
+        title.text(response.recommendedWines[0].title)
+        $("#otherWineImage1").append(title);
+        var title = $("<p>");
+        title.text(response.recommendedWines[1].title)
+        $("#otherWineImage2").append(title);
+        // var title = $("<p>");
+        // title.text(response.recommendedWines[2].title)
+        // $("#otherWineImage3").append(title);
+      })
 
     });
 
