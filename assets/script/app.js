@@ -1,8 +1,15 @@
+var config = {
+  apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
+  authDomain: "sippin-what.firebaseapp.com",
+  databaseURL: "https://sippin-what.firebaseio.com",
+  projectId: "sippin-what",
+  storageBucket: "sippin-what.appspot.com",
+  messagingSenderId: "175010578796"
+};
+firebase.initializeApp(config);
 
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
+var database = firebase.database();
+
 var map, infoWindow;
 // $(".wineSwipe").hide();
 function initMap() {
@@ -17,13 +24,11 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      // var userPostion = {
+      //   userPosition: pos,
+      // }
+      // database.ref().push(userPosition)
 
-      // var marker = new google.maps.Marker({
-      //   position: pos,
-      //   map: map,
-      //   title: 'Hello World!'
-      // })
-      
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
@@ -39,7 +44,7 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-  
+
 }
 
 function callback(results, status) {
@@ -69,32 +74,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: The Geolocation service failed.' :
     'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
-  
+
 }
+
+
 $(function () {
   $('.parallax').parallax();
- 
+
   function pageScroll() {
     window.scrollBy(0, 325);
     // scrolldelay = setTimeout(pageScroll, 7);
   }
 
-  var config = {
-    apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
-    authDomain: "sippin-what.firebaseapp.com",
-    databaseURL: "https://sippin-what.firebaseio.com",
-    projectId: "sippin-what",
-    storageBucket: "sippin-what.appspot.com",
-    messagingSenderId: "175010578796"
-  };
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
 
 
-  $(".btn").click(function () {    
+
+  $(".btn").click(function () {
     event.preventDefault();
-    pageScroll();
+    
     var textInput = $(".autocomplete").val().trim().toLowerCase();
     var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
     var wineAPI = {
@@ -109,30 +106,37 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-      var otherWines = response.pairedWines[0];
-
-      var p = $("<p>");
-      p.text(response.pairingText);
-      $("#words").append(p);
-
-      var description = $("<p>");
-      description.text(response.productMatches[0].description);
-      $("#words").append(description);
-
-      var img = $("<img>");
-      img.attr("src", response.productMatches[0].imageUrl);
-      $("#image").append(img);
-
-      var title = $("<p>");
-      title.text(response.productMatches[0].title)
-      $("#image").append(title);
-      $(".wineSwipe").show();
+      
 
       if (response.status === "failure") {
-        $("#autocomplete-input").text(response.message)
+        console.log(response.message)
+        $(".notValid").text("Sorry! " + response.message)
       }
       else if (response.pairingText === "") {
-        $("#autocomplete-input").html("we don't have dat")
+        $(".notValid").text("Thanks for making us better! We didn't " + textInput + "but are always trying to improve our app" )
+      }
+
+      else {
+        $(".notValid").empty();
+        pageScroll();
+        var otherWines = response.pairedWines[0];
+
+        var p = $("<p>");
+        p.text(response.pairingText);
+        $("#words").append(p);
+
+        var description = $("<p>");
+        description.text(response.productMatches[0].description);
+        $("#words").append(description);
+
+        var img = $("<img>");
+        img.attr("src", response.productMatches[0].imageUrl);
+        $("#image").append(img);
+
+        var title = $("<p>");
+        title.text(response.productMatches[0].title)
+        $("#image").append(title);
+        $(".wineSwipe").show();
       }
 
       var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
@@ -170,14 +174,16 @@ $(function () {
 
     });
 
-   
+
 
 
     var newFood = {
       newFood: textInput,
     }
+
     database.ref().push(newFood);
     $(".autocomplete").val("");
+
   });
 
   // $(".autocomplete").keyup(function (event) {
