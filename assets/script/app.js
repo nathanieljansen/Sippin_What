@@ -113,7 +113,7 @@ $(function () {
         $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!")
       }
       else if (response.pairingText === "") {
-        $(".notValid").text("Thanks for making us better! We didn't a pairing for " + textInput + "but we are always trying to improve our app" )
+        $(".notValid").text("Thanks for making us better! We didn't a pairing for " + textInput + " but we are always trying to improve our app" )
       }
 
       else {
