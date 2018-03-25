@@ -6,6 +6,10 @@ body {
   margin-top: 4%;
 }
 
+.autocomplete {
+  font-size: 16px;
+}
+
 .nav-wrapper {
   background: #5b0b0b !important;
 }
