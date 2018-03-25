@@ -110,7 +110,7 @@ $(function () {
 
       if (response.status === "failure") {
         console.log(response.message)
-        $(".notValid").text("Sorry! " + response.message)
+        $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!")
       }
       else if (response.pairingText === "") {
         $(".notValid").text("Thanks for making us better! We didn't " + textInput + "but are always trying to improve our app" )
