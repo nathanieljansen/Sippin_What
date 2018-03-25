@@ -131,7 +131,7 @@ $(function () {
 
         var img = $("<img>");
         img.attr("src", response.productMatches[0].imageUrl);
-        $("#image").append(img);
+        $("#image").html(img);
 
         var title = $("<p>");
         title.text(response.productMatches[0].title)
