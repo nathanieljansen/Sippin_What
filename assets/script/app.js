@@ -24,10 +24,10 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      // var userPostion = {
-      //   userPosition: pos,
-      // }
-      // database.ref().push(userPosition)
+      var userPosition = {
+        userPosition: pos,
+      }
+      database.ref().push(userPosition)
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
