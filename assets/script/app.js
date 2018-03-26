@@ -91,7 +91,10 @@ $(function () {
 
   $(".btn").click(function () {
     event.preventDefault();
-    
+    $("#words").empty();
+    $("#image").empty();
+    $("#otherWineImage1").empty();
+    $("#otherWineImage2").empty();
     var textInput = $(".autocomplete").val().trim().toLowerCase();
     var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
     var wineAPI = {
@@ -113,7 +116,7 @@ $(function () {
         $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!")
       }
       else if (response.pairingText === "") {
-        $(".notValid").text("Thanks for making us better! We didn't " + textInput + "but are always trying to improve our app" )
+        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app" )
       }
 
       else {
