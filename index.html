@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./assets/style/style.css">
   <!-- Compiled and minified CSS -->
@@ -33,6 +33,11 @@
         </button>
       </div>
     </div>
+    <div class="row container">
+      <div class="col s12 center notValid">
+
+      </div>
+    </div>
   </div>
   <div class="parallax-container">
     <div class="parallax">
@@ -48,18 +53,31 @@
             <a href="#test-swipe-1">What Your Sippin'</a>
           </li>
           <li class="tab col s4">
-            <a href="#test-swipe-2">Test 2</a>
+            <a href="#test-swipe-2">Liquor Stores in Your Area</a>
           </li>
           <li class="tab col s4">
-            <a href="#test-swipe-3">Test 3</a>
+            <a href="#test-swipe-3">Comparable Wines</a>
           </li>
         </ul>
         <div id="test-swipe-1" class="col s12">
           <div class="col m8 s12" id="words"></div>
           <div class="col m4 s12" id="image"></div>
         </div>
-        <div id="test-swipe-2" class="col s12">Test 2</div>
-        <div id="test-swipe-3" class="col s12">Test 3</div>
+        <div id="test-swipe-2" class="col s12">
+          <div id="map" style="width:350px;height:286px;background:white"></div>
+        </div>
+        <div id="test-swipe-3" class="col s12">
+
+          <div class="col m6 s12 center" id="otherWineImage1"></div>
+          <div class="col m6 s12 center" id="otherWine1"></div>
+
+          <div class="col m6 s12 center" id="otherWineImage2"></div>
+          <div class="col m6 s12 center" id="otherWine2"></div>
+
+          <!-- <div class="col m4 s12 center" id="otherWineImage3"></div>
+          <div class="col m4 s12 center" id="otherWine3"></div> -->
+
+        </div>
       </div>
     </div>
   </div>
@@ -69,13 +87,13 @@
     </div>
   </div>
 
-<div id="map" style="width:400px;height:400px;background:white"></div>
+
 
 
   </div>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq0zKm3uDZtDfaVW9qoYpvO9IeqRM-qOs&libraries=places&callback=initMap">
   </script>
-  
+
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
