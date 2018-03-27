@@ -82,7 +82,7 @@ $(function () {
   $('.parallax').parallax();
 
   function pageScroll() {
-    window.scrollBy(0, 325);
+    window.scrollBy(0, 450);
     // scrolldelay = setTimeout(pageScroll, 7);
   }
 

@@ -56,6 +56,18 @@ a {
   color: white !important;
 }
 
-.parallax-container {
-  height: 300px !important;
+.image1 {
+  height: 150px !important;
+}
+
+.image2 {
+  height: 250px !important;
+}
+
+.meet {
+  color: white !important;
+}
+
+.page-footer {
+  background: #5b0b0b !important;
 }
