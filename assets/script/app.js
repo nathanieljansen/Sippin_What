@@ -40,10 +40,10 @@ function initMap() {
           .long_name;
       })
 
-      // var userPosition = {
-      //   userPosition: pos,
-      // }
-      // database.ref().push(userPosition)
+      var userPosition = {
+        userPosition: zip,
+      }
+      database.ref("/" + zip).push(userPosition);
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
@@ -199,6 +199,7 @@ $(function () {
     var newFood = {
       newFood: textInput,
     }
+    
 
     database.ref("/" + zip).push(newFood);
     $(".autocomplete").val("");
