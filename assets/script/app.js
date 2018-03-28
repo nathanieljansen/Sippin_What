@@ -47,8 +47,8 @@ function initMap() {
         console.log('did it work ???', resultsBack.results[2].address_components[0].long_name);
         zip = resultsBack.results[2].address_components[0].long_name;
       })
-      
-      // var userPostion = {
+
+      // var userPosition = {
       //   userPosition: pos,
       // }
       // database.ref().push(userPosition)
@@ -105,10 +105,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(function () {
   $('.parallax').parallax();
 
-  function pageScroll() {
-    window.scrollBy(0, 325);
-    // scrolldelay = setTimeout(pageScroll, 7);
-  }
+  // function pageScroll() {
+  //   window.scrollBy(0, 1);
+  //   scrolldelay = setTimeout(pageScroll, 1);
+  // }
 
 
 
@@ -141,7 +141,7 @@ $(function () {
 
       else {
         $(".notValid").empty();
-        pageScroll();
+        // pageScroll();
         var otherWines = response.pairedWines[0];
 
        $("#words").empty();
