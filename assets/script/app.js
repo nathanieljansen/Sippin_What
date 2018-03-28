@@ -10,6 +10,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var zip = "";
+
 var map, infoWindow;
 // $(".wineSwipe").hide();
 function initMap() {
