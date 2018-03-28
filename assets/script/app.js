@@ -28,7 +28,7 @@ function initMap() {
       };
 
       $.ajax({
-        url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&sensor=true",
+        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&sensor=true",
         type: "GET",
       }).then(function (resultsBack) {
         console.log(resultsBack);
