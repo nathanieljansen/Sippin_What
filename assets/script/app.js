@@ -32,18 +32,13 @@ function initMap() {
         type: "GET",
       }).then(function (resultsBack) {
         console.log('did it work ???', resultsBack.results[2].address_components[0].long_name);
-        // zip = resultsBack.results[2].address_components[0].long_name;
-        zip = resultsBack.results.find(function(result) {
-          return result.types.includes('postal_code');
-        })
-          .address_components.find(({types}) => types.includes('postal_code'))
-          .long_name;
+        zip = resultsBack.results[2].address_components[0].long_name;
       })
 
-      var userPosition = {
-        userPosition: zip,
-      }
-      database.ref("/" + zip).push(userPosition);
+      // var userPosition = {
+      //   userPosition: pos,
+      // }
+      // database.ref().push(userPosition)
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
@@ -125,14 +120,14 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-
+      
 
       if (response.status === "failure") {
         console.log(response.message)
-        $(".notValid").text("Sorry! " + response.message + ". We are always trying to improve. Thanks for you help!")
+        $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!")
       }
       else if (response.pairingText === "") {
-        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app")
+        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app" )
       }
 
       else {
@@ -199,7 +194,6 @@ $(function () {
     var newFood = {
       newFood: textInput,
     }
-    
 
     database.ref("/" + zip).push(newFood);
     $(".autocomplete").val("");
