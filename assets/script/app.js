@@ -24,6 +24,15 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+
+      $.ajax({
+        url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&sensor=true",
+        type: "GET",
+      }).then(function (resultsBack) {
+        console.log('did it work ???', resultsBack.results[2].address_components[0].long_name);
+        zip = resultsBack.results[2].address_components[0].long_name;
+      })
+
       var userPosition = {
         userPosition: pos,
       }
@@ -81,10 +90,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 $(function () {
   $('.parallax').parallax();
 
-  function pageScroll() {
-    window.scrollBy(0, 450);
-    // scrolldelay = setTimeout(pageScroll, 7);
-  }
+  // function pageScroll() {
+  //   window.scrollBy(0, 1);
+  //   scrolldelay = setTimeout(pageScroll, 1);
+  // }
 
 
 
@@ -121,7 +130,7 @@ $(function () {
 
       else {
         $(".notValid").empty();
-        pageScroll();
+        // pageScroll();
         var otherWines = response.pairedWines[0];
 
         var p = $("<p>");
@@ -184,7 +193,7 @@ $(function () {
       newFood: textInput,
     }
 
-    database.ref().push(newFood);
+    database.ref("/" + zip).push(newFood);
     $(".autocomplete").val("");
 
   });
