@@ -33,7 +33,9 @@ function initMap() {
       }).then(function (resultsBack) {
         console.log('did it work ???', resultsBack.results[2].address_components[0].long_name);
         // zip = resultsBack.results[2].address_components[0].long_name;
-        zip = resultsBack.results.find(({types}) => types.includes('postal_code'))
+        zip = resultsBack.results.find(function(result) {
+          return result.types.includes('postal_code');
+        })
           .address_components.find(({types}) => types.includes('postal_code'))
           .long_name;
       })
