@@ -33,10 +33,10 @@ function initMap() {
         zip = resultsBack.results[2].address_components[0].long_name;
       })
 
-      var userPosition = {
-        userPosition: pos,
-      }
-      database.ref().push(userPosition)
+      // var userPosition = {
+      //   userPosition: pos,
+      // }
+      // database.ref().push(userPosition)
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
