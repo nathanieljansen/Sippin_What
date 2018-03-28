@@ -31,14 +31,23 @@ function initMap() {
         url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&sensor=true",
         type: "GET",
       }).then(function (resultsBack) {
-        console.log('did it work ???', resultsBack.results[2].address_components[0].long_name);
-        zip = resultsBack.results[2].address_components[0].long_name;
+        console.log(resultsBack);
+        // console.log('did it work ???', resultsBack.results[5].address_components[0].long_name);
+        // zip = resultsBack.results[5].address_components[0].long_name;
         zip = resultsBack.results.find(function(result) {
-          return result.types.includes('postal_code');
+          return result.address_components.find(({ types }) => types.includes('postal_code'))
         })
-          .address_components.find(({types}) => types.includes('postal_code'))
-          .long_name;
+        
+        if (!zip) {
+          zip = 'DEFAULT';
+        } else {
+          zip = zip.address_components.find(({types}) => types.includes('postal_code')).long_name;
+        }
+
+        console.log(zip);
       })
+      
+
 
       // var userPosition = {
       //   userPosition: pos,
