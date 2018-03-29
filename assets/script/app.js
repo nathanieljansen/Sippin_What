@@ -115,13 +115,13 @@ $(function () {
 
 
 
-  $(".btn").click(function () {
+  $(".searchButton").click(function () {
     event.preventDefault();
     $("#words").empty();
     $("#image").empty();
     $("#otherWineImage1").empty();
     $("#otherWineImage2").empty();
-    var textInput = $(".autocomplete").val().trim().toLowerCase();
+    var textInput = $(".autocomplete1").val().trim().toLowerCase();
     var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
     var wineAPI = {
       "async": true,
@@ -214,17 +214,70 @@ $(function () {
         database.ref("/" + zip).push(newPairing);
       }
 
-      
-
     });
+
+ 
 
 
 
 
     
-    $(".autocomplete").val("");
+    $(".autocomplete1").val("");
 
   });
+
+
+  var messagesRef = firebase.database().ref("messages");
+
+
+  //listen for form submiyt
+  document.getElementById("contact-form").addEventListener("submit", submitForm);
+
+
+  //submit the form
+  function submitForm(e) {
+    e.preventDefault();
+
+
+
+    //getvalues
+    var firstName = getInputVal("first_name");
+    var lastName = getInputVal("last_name");
+    var email = getInputVal("email");
+    var message = getInputVal("textarea1");
+
+    console.log(name);
+
+    //save message
+    saveMessage(firstName, lastName, email, message);
+
+    //clear form
+    document.getElementById("contact-form").reset();
+  }
+
+
+  //function to get form values
+  function getInputVal(id) {
+    return document.getElementById(id).value;
+
+  }
+
+
+
+  //save messages to firebase
+  function saveMessage(firstName, lastName, email, message) {
+    var newMessageRef = messagesRef.push();
+    newMessageRef.set({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      message: message,
+
+    })
+  };
+
+
+  
 
   // $(".autocomplete").keyup(function (event) {
   //   var letterinput = $(".autocomplete").val();
@@ -247,7 +300,5 @@ $(function () {
   database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
   });
-
-  
 });
 
