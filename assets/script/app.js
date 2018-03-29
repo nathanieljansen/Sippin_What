@@ -132,17 +132,21 @@ $(function () {
         "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
         "Cache-Control": "no-cache",
       }
+      
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-     
+      
+
 
       if (response.status === "failure") {
         console.log(response.message)
-        $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!")
+        $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!");
+        database.ref().push(badPairing);
       }
       else if (response.pairingText === "") {
-        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app" )
+        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app");
+        database.ref().push(badPairing);
       }
 
       else {
