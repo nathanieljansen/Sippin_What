@@ -135,7 +135,7 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-      var pickedWine = response.productMatches[0].title
+     
 
       if (response.status === "failure") {
         console.log(response.message)
@@ -147,7 +147,7 @@ $(function () {
 
       else {
         $(".notValid").empty();
-        
+        var pickedWine = response.productMatches[0].title
         console.log(pickedWine);
         // pageScroll();
         var otherWines = response.pairedWines[0];
