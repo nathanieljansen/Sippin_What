@@ -12,6 +12,7 @@ var database = firebase.database();
 
 var zip = "";
 
+
 var map, infoWindow;
 // $(".wineSwipe").hide();
 function initMap() {
@@ -134,7 +135,7 @@ $(function () {
     }
     $.ajax(wineAPI).then(function (response) {
       console.log(response)
-      
+      var pickedWine = response.productMatches[0].title
 
       if (response.status === "failure") {
         console.log(response.message)
@@ -146,6 +147,8 @@ $(function () {
 
       else {
         $(".notValid").empty();
+        
+        console.log(pickedWine);
         // pageScroll();
         var otherWines = response.pairedWines[0];
 
@@ -165,51 +168,56 @@ $(function () {
         title.text(response.productMatches[0].title)
         $("#image").append(title);
         $(".wineSwipe").show();
+
+        var newPairing = {
+          foodInput: textInput,
+          wineSelection: pickedWine
+        }
+
+        var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
+        var comparableAPI = {
+          "async": true,
+          "crossDomain": true,
+          "url": comparableWineQueryURL,
+          "method": "GET",
+          "headers": {
+            "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
+            "Cache-Control": "no-cache",
+          }
+        }
+        $.ajax(comparableAPI).then(function (response) {
+          console.log(response.recommendedWines)
+          var img = $("<img>");
+          img.attr("src", response.recommendedWines[0].imageUrl);
+          $("#otherWineImage1").append(img);
+          var img = $("<img>");
+          img.attr("src", response.recommendedWines[1].imageUrl);
+          $("#otherWineImage2").append(img);
+          // var img = $("<img>");
+          // img.attr("src", response.recommendedWines[2].imageUrl);
+          // $("#otherWineImage3").append(img);
+          var title = $("<p>");
+          title.text(response.recommendedWines[0].title)
+          $("#otherWineImage1").append(title);
+          var title = $("<p>");
+          title.text(response.recommendedWines[1].title)
+          $("#otherWineImage2").append(title);
+          // var title = $("<p>");
+          // title.text(response.recommendedWines[2].title)
+          // $("#otherWineImage3").append(title);
+        })
+
+        database.ref("/" + zip).push(newPairing);
       }
 
-      var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
-      var comparableAPI = {
-        "async": true,
-        "crossDomain": true,
-        "url": comparableWineQueryURL,
-        "method": "GET",
-        "headers": {
-          "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
-          "Cache-Control": "no-cache",
-        }
-      }
-      $.ajax(comparableAPI).then(function (response) {
-        console.log(response.recommendedWines)
-        var img = $("<img>");
-        img.attr("src", response.recommendedWines[0].imageUrl);
-        $("#otherWineImage1").append(img);
-        var img = $("<img>");
-        img.attr("src", response.recommendedWines[1].imageUrl);
-        $("#otherWineImage2").append(img);
-        // var img = $("<img>");
-        // img.attr("src", response.recommendedWines[2].imageUrl);
-        // $("#otherWineImage3").append(img);
-        var title = $("<p>");
-        title.text(response.recommendedWines[0].title)
-        $("#otherWineImage1").append(title);
-        var title = $("<p>");
-        title.text(response.recommendedWines[1].title)
-        $("#otherWineImage2").append(title);
-        // var title = $("<p>");
-        // title.text(response.recommendedWines[2].title)
-        // $("#otherWineImage3").append(title);
-      })
+      
 
     });
 
 
 
 
-    var newFood = {
-      newFood: textInput,
-    }
-
-    database.ref("/" + zip).push(newFood);
+    
     $(".autocomplete").val("");
 
   });
