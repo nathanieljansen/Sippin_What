@@ -67,6 +67,7 @@
                         </div>
             </form>
         </div>
+        </div>
         <div class="parallax-container image2">
             <div class="parallax">
               <img src="https://joyofwine.files.wordpress.com/2013/01/red-wine-and-glass-bottle-hq-wallpapers1.jpg?w=900">
@@ -112,6 +113,9 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
             <!-- <script src="./assets/script/app.js"></script> -->
             <script>
+
+                $(function () {
+                    $('.parallax').parallax()
                 // Initialize Firebase
                 var config = {
                 apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
@@ -174,8 +178,7 @@
                 }
                 
 
-                $(function () {
-                    $('.parallax').parallax()
+                
                 })
 
                 
@@ -184,33 +187,17 @@
 
 </html>
 <!-- <style>
-    label color
-   .input-field label {
-     color: #000;
+   #textarea1 {
+     border-bottom-color: orange !important;
+     border-bottom:  orange !important;
+     box-shadow: olive !important;
    }
    /* label focus color */
-   .input-field input[type=text]:focus + label {
+   /* .input-field input[type=text]:focus + label {
      color: #000;
    }
    /* label underline focus color */
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid rgb(245, 231, 124);
-     box-shadow: 0 1px 0 0 rgb(224, 149, 35);
-   }
-   /* valid color */
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* invalid color */
-   .input-field input[type=text].invalid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #000;
-   }
+   /*  */
 
    /* button{
     background-color: rgb(108, 15, 21);
