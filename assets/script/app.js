@@ -35,19 +35,19 @@ function initMap() {
         console.log(resultsBack);
         // console.log('did it work ???', resultsBack.results[5].address_components[0].long_name);
         // zip = resultsBack.results[5].address_components[0].long_name;
-        zip = resultsBack.results.find(function(result) {
+        zip = resultsBack.results.find(function (result) {
           return result.address_components.find(({ types }) => types.includes('postal_code'))
         })
-        
+
         if (!zip) {
           zip = 'DEFAULT';
         } else {
-          zip = zip.address_components.find(({types}) => types.includes('postal_code')).long_name;
+          zip = zip.address_components.find(({ types }) => types.includes('postal_code')).long_name;
         }
 
         console.log(zip);
       })
-      
+
 
 
       // var userPosition = {
@@ -135,120 +135,117 @@ $(function () {
   // }
 
 
+  $(".autocomplete1").keyup(function (event) {
+    if (event.keyCode === 13) {
+      $(".searchButton").click();
 
 
-  $(".searchButton").click(function () {
-    event.preventDefault();
-    $("#words").empty();
-    $("#image").empty();
-    $("#otherWineImage1").empty();
-    $("#otherWineImage2").empty();
-    var textInput = $(".autocomplete1").val().trim().toLowerCase();
-    var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
-    var wineAPI = {
-      "async": true,
-      "crossDomain": true,
-      "url": wineQueryURL,
-      "method": "GET",
-      "headers": {
-        "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
-        "Cache-Control": "no-cache",
-      }
-      
-    }
-    $.ajax(wineAPI).then(function (response) {
-      console.log(response)
-      
-
-
-      if (response.status === "failure") {
-        console.log(response.message)
-        $(".notValid").text("Sorry! " + response.message +". We are always trying to improve. Thanks for you help!");
-        database.ref().push(badPairing);
-      }
-      else if (response.pairingText === "") {
-        $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app");
-        database.ref().push(badPairing);
-      }
-
-      else {
-        $(".notValid").empty();
-        $("html, body").animate({
-          scrollTop: $('.wineSwipe').offset().top - 200
-        }, 1000);
-        var pickedWine = response.productMatches[0].title
-        console.log(pickedWine);
-        // pageScroll();
-        var otherWines = response.pairedWines[0];
-
-        var p = $("<p>");
-        p.text(response.pairingText);
-        $("#words").append(p);
-
-        var description = $("<p>");
-        description.text(response.productMatches[0].description);
-        $("#words").append(description);
-
-        var img = $("<img>");
-        img.attr("src", response.productMatches[0].imageUrl);
-        $("#image").html(img);
-
-        var title = $("<p>");
-        title.text(response.productMatches[0].title)
-        $("#image").append(title);
-        $(".wineSwipe").show();
-
-        var newPairing = {
-          foodInput: textInput,
-          wineSelection: pickedWine
-        }
-
-        var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
-        var comparableAPI = {
+      $(".searchButton").click(function () {
+        event.preventDefault();
+        $("#words").empty();
+        $("#image").empty();
+        $("#otherWineImage1").empty();
+        $("#otherWineImage2").empty();
+        var textInput = $(".autocomplete1").val().trim().toLowerCase();
+        var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
+        var wineAPI = {
           "async": true,
           "crossDomain": true,
-          "url": comparableWineQueryURL,
+          "url": wineQueryURL,
           "method": "GET",
           "headers": {
             "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
             "Cache-Control": "no-cache",
           }
+
         }
-        $.ajax(comparableAPI).then(function (response) {
-          console.log(response.recommendedWines)
-          var img = $("<img>");
-          img.attr("src", response.recommendedWines[0].imageUrl);
-          $("#otherWineImage1").append(img);
-          var img = $("<img>");
-          img.attr("src", response.recommendedWines[1].imageUrl);
-          $("#otherWineImage2").append(img);
-          var img = $("<img>");
-          img.attr("src", response.recommendedWines[2].imageUrl);
-          $("#otherWineImage3").append(img);
-          var title = $("<p>");
-          title.text(response.recommendedWines[0].title)
-          $("#otherWineImage1").append(title);
-          var title = $("<p>");
-          title.text(response.recommendedWines[1].title)
-          $("#otherWineImage2").append(title);
-          var title = $("<p>");
-          title.text(response.recommendedWines[2].title)
-          $("#otherWineImage3").append(title);
-        })
-
-        database.ref("/" + zip).push(newPairing);
-      }
-
-    });
-
- 
+        $.ajax(wineAPI).then(function (response) {
+          console.log(response)
 
 
 
+          if (response.status === "failure") {
+            console.log(response.message)
+            $(".notValid").text("Sorry! " + response.message + ". We are always trying to improve. Thanks for you help!");
+            database.ref().push(badPairing);
+          }
+          else if (response.pairingText === "") {
+            $(".notValid").text("Thanks for making us better! We didn't find a pairing for " + textInput + " but we are always trying to improve our app");
+            database.ref().push(badPairing);
+          }
 
-    
-    $(".autocomplete1").val("");
+          else {
+            $(".notValid").empty();
+            $("html, body").animate({
+              scrollTop: $('.wineSwipe').offset().top - 200
+            }, 1000);
+            var pickedWine = response.productMatches[0].title
+            console.log(pickedWine);
+            // pageScroll();
+            var otherWines = response.pairedWines[0];
 
+            var p = $("<p>");
+            p.text(response.pairingText);
+            $("#words").append(p);
+
+            var description = $("<p>");
+            description.text(response.productMatches[0].description);
+            $("#words").append(description);
+
+            var img = $("<img>");
+            img.attr("src", response.productMatches[0].imageUrl);
+            $("#image").html(img);
+
+            var title = $("<p>");
+            title.text(response.productMatches[0].title)
+            $("#image").append(title);
+            $(".wineSwipe").show();
+
+            var newPairing = {
+              foodInput: textInput,
+              wineSelection: pickedWine
+            }
+
+            var comparableWineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/recommendation?maxPrice=50&minRating=0.7&number=3&wine=" + otherWines;
+            var comparableAPI = {
+              "async": true,
+              "crossDomain": true,
+              "url": comparableWineQueryURL,
+              "method": "GET",
+              "headers": {
+                "X-Mashape-Key": "aVuMKS8FG3mshVQlO5dNdPxZQCdrp1FpzUDjsnZtHrg9bA3DEP",
+                "Cache-Control": "no-cache",
+              }
+            }
+            $.ajax(comparableAPI).then(function (response) {
+              console.log(response.recommendedWines)
+              var img = $("<img>");
+              img.attr("src", response.recommendedWines[0].imageUrl);
+              $("#otherWineImage1").append(img);
+              var img = $("<img>");
+              img.attr("src", response.recommendedWines[1].imageUrl);
+              $("#otherWineImage2").append(img);
+              var img = $("<img>");
+              img.attr("src", response.recommendedWines[2].imageUrl);
+              $("#otherWineImage3").append(img);
+              var title = $("<p>");
+              title.text(response.recommendedWines[0].title)
+              $("#otherWineImage1").append(title);
+              var title = $("<p>");
+              title.text(response.recommendedWines[1].title)
+              $("#otherWineImage2").append(title);
+              var title = $("<p>");
+              title.text(response.recommendedWines[2].title)
+              $("#otherWineImage3").append(title);
+            })
+
+            database.ref("/" + zip).push(newPairing);
+          }
+
+        });
+        $(".autocomplete1").val("");
+      });
+    }
   });
 
 
@@ -301,7 +298,7 @@ $(function () {
   };
 
 
-  
+
 
   // $(".autocomplete").keyup(function (event) {
   //   var letterinput = $(".autocomplete").val();
