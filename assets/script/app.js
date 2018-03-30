@@ -222,18 +222,18 @@ $(function () {
           var img = $("<img>");
           img.attr("src", response.recommendedWines[1].imageUrl);
           $("#otherWineImage2").append(img);
-          // var img = $("<img>");
-          // img.attr("src", response.recommendedWines[2].imageUrl);
-          // $("#otherWineImage3").append(img);
+          var img = $("<img>");
+          img.attr("src", response.recommendedWines[2].imageUrl);
+          $("#otherWineImage3").append(img);
           var title = $("<p>");
           title.text(response.recommendedWines[0].title)
           $("#otherWineImage1").append(title);
           var title = $("<p>");
           title.text(response.recommendedWines[1].title)
           $("#otherWineImage2").append(title);
-          // var title = $("<p>");
-          // title.text(response.recommendedWines[2].title)
-          // $("#otherWineImage3").append(title);
+          var title = $("<p>");
+          title.text(response.recommendedWines[2].title)
+          $("#otherWineImage3").append(title);
         })
 
         database.ref("/" + zip).push(newPairing);
@@ -297,7 +297,6 @@ $(function () {
       lastName: lastName,
       email: email,
       message: message,
-
     })
   };
 
