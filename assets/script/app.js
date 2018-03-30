@@ -1,3 +1,4 @@
+
 var config = {
   apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
   authDomain: "sippin-what.firebaseapp.com",
@@ -14,7 +15,7 @@ var zip = "";
 
 
 var map, infoWindow;
-// $(".wineSwipe").hide();
+$(".wineSwipe").hide();
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 39.7392, lng: -104.9903 },
@@ -48,12 +49,6 @@ function initMap() {
         console.log(zip);
       })
 
-
-
-      // var userPosition = {
-      //   userPosition: pos,
-      // }
-      // database.ref().push(userPosition)
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
@@ -127,13 +122,11 @@ function callback(results, status) {
 }
 
 $(function () {
+ 
+  
   $('.parallax').parallax();
-
-  // function pageScroll() {
-  //   window.scrollBy(0, 1);
-  //   scrolldelay = setTimeout(pageScroll, 1);
-  // }
-
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
 
   $(".autocomplete1").keyup(function (event) {
     if (event.keyCode === 13) {
@@ -175,13 +168,13 @@ $(function () {
           }
 
           else {
+            $(".wineSwipe").show();
             $(".notValid").empty();
             $("html, body").animate({
               scrollTop: $('.wineSwipe').offset().top - 200
             }, 1000);
             var pickedWine = response.productMatches[0].title
             console.log(pickedWine);
-            // pageScroll();
             var otherWines = response.pairedWines[0];
 
             var p = $("<p>");
@@ -321,5 +314,6 @@ $(function () {
   database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
   });
+}
 });
 
