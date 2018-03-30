@@ -103,6 +103,28 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 }
 
+function createList(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+  var newDiv = $("<p>");
+  newDiv.html(place.name + "<br>" + place.vicinity);
+
+  $("#name").append(newDiv);
+  console.log(place);
+};
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+      createList(results[i]);
+
+    }
+  }
+}
 
 $(function () {
   $('.parallax').parallax();
@@ -151,6 +173,9 @@ $(function () {
 
       else {
         $(".notValid").empty();
+        $("html, body").animate({
+          scrollTop: $('.wineSwipe').offset().top - 200
+        }, 1000);
         var pickedWine = response.productMatches[0].title
         console.log(pickedWine);
         // pageScroll();

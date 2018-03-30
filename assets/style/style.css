@@ -71,3 +71,9 @@ a {
 .page-footer {
   background: #5b0b0b !important;
 }
+
+.map2 {
+ width: 100%;
+height: 400px;
+margin-top: 13px;
+}
