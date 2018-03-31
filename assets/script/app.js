@@ -129,9 +129,7 @@ function callback(results, status) {
 $(function () {
  
   $('.parallax').parallax();
-  $(window).on('beforeunload', function () {
-    $(window).scrollTop(0);
-  });
+ 
 
   $(".autocomplete1").keyup(function (event) {
     if (event.keyCode === 13) {
