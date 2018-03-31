@@ -1,3 +1,5 @@
+window.onbeforeunload = function () { window.scrollTo(0, 0); }
+
 var config = {
   apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
   authDomain: "sippin-what.firebaseapp.com",
@@ -178,13 +180,15 @@ $(".searchButton").click(function () {
             p.text(response.pairingText);
             $("#words").append(p);
 
+            var img = $("<img>");
+            img.attr("src", response.productMatches[0].imageUrl);
+            $("#image").append(img);
+
             var description = $("<p>");
             description.text(response.productMatches[0].description);
             $("#words").append(description);
 
-            var img = $("<img>");
-            img.attr("src", response.productMatches[0].imageUrl);
-            $("#image").html(img);
+            
 
             var title = $("<p>");
             title.text(response.productMatches[0].title)
