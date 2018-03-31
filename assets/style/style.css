@@ -33,9 +33,9 @@ body {
   border-radius: 5px !important;
 }
 
-/* .active {
-  color: #5b0b0b !important;
-} */
+.pImage1 {
+  height: 150px !important;
+}
 
 a {
   color: #8f8023 !important;
