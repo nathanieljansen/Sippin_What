@@ -50,6 +50,9 @@ function initMap() {
       })
 
 
+
+  
+
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
@@ -122,11 +125,11 @@ function callback(results, status) {
 }
 
 $(function () {
- 
   
   $('.parallax').parallax();
   window.onbeforeunload = function () {
     window.scrollTo(0, 0);
+  }
 
   $(".autocomplete1").keyup(function (event) {
     if (event.keyCode === 13) {
@@ -314,6 +317,5 @@ $(function () {
   database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
   });
-}
 });
 

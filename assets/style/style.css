@@ -78,13 +78,6 @@ a {
   margin-top: 13px;
 }
 
-/* label focus color */
-
-/* .input-field input[type=text]:focus+label {
-  color: #000 !important;
-} */
-
-/* label underline focus color */
 
 .input-field input[type=text]:focus {
   border-bottom: 1px solid #8f8023 !important;
