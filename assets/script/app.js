@@ -131,9 +131,9 @@ $(function () {
   $('.parallax').parallax();
  
 
-  $(".autocomplete1").keyup(function (event) {
-    if (event.keyCode === 13) {
-      $(".searchButton").click();
+  // $(".autocomplete1").keyup(function (event) {
+  //   if (event.keyCode === 13) {
+  //     $(".searchButton").click();
 
 
       $(".searchButton").click(function () {
@@ -241,8 +241,7 @@ $(function () {
         });
         $(".autocomplete1").val("");
       });
-    }
-  });
+ 
 
 
   var messagesRef = firebase.database().ref("messages");
