@@ -115,7 +115,7 @@ function createList(place) {
   newDiv.html(place.name + "<br>" + place.vicinity);
 
   $("#name").append(newDiv);
-  console.log(place);
+  // console.log(place);
 };
 
 function callback(results, status) {
