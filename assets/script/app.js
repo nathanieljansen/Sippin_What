@@ -217,22 +217,22 @@ $(function () {
               console.log(response.recommendedWines)
               var img = $("<img>");
               img.attr("src", response.recommendedWines[0].imageUrl);
-              $("#otherWineImage1").append(img);
+              $("#otherWineImage1").html(img);
               var img = $("<img>");
               img.attr("src", response.recommendedWines[1].imageUrl);
-              $("#otherWineImage2").append(img);
+              $("#otherWineImage2").html(img);
               var img = $("<img>");
               img.attr("src", response.recommendedWines[2].imageUrl);
-              $("#otherWineImage3").append(img);
+              $("#otherWineImage3").html(img);
               var title = $("<p>");
               title.text(response.recommendedWines[0].title)
-              $("#otherWineImage1").html(title);
+              $("#otherWineImage1").append(title);
               var title = $("<p>");
               title.text(response.recommendedWines[1].title)
-              $("#otherWineImage2").html(title);
+              $("#otherWineImage2").append(title);
               var title = $("<p>");
               title.text(response.recommendedWines[2].title)
-              $("#otherWineImage3").html(title);
+              $("#otherWineImage3").append(title);
             })
 
             database.ref("/" + zip).push(newPairing);
