@@ -109,3 +109,7 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   box-shadow: 0 1px 0 0 #5b0b0b !important;
   background-color: white !important;
 }
+
+.row .col {
+  margin-top: 10px;
+}
