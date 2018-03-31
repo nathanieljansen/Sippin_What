@@ -1,4 +1,3 @@
-
 var config = {
   apiKey: "AIzaSyCEsZxf-oF64tfJK_saGz85n0TqBi1yHlA",
   authDomain: "sippin-what.firebaseapp.com",
@@ -51,7 +50,10 @@ function initMap() {
 
 
 
-  
+      // var userPosition = {
+      //   userPosition: pos,
+      // }
+      // database.ref().push(userPosition)
 
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
@@ -125,11 +127,11 @@ function callback(results, status) {
 }
 
 $(function () {
-  
+ 
   $('.parallax').parallax();
-  window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-  }
+  $(window).on('beforeunload', function () {
+    $(window).scrollTop(0);
+  });
 
   $(".autocomplete1").keyup(function (event) {
     if (event.keyCode === 13) {
@@ -226,13 +228,13 @@ $(function () {
               $("#otherWineImage3").append(img);
               var title = $("<p>");
               title.text(response.recommendedWines[0].title)
-              $("#otherWineImage1").append(title);
+              $("#otherWineImage1").html(title);
               var title = $("<p>");
               title.text(response.recommendedWines[1].title)
-              $("#otherWineImage2").append(title);
+              $("#otherWineImage2").html(title);
               var title = $("<p>");
               title.text(response.recommendedWines[2].title)
-              $("#otherWineImage3").append(title);
+              $("#otherWineImage3").html(title);
             })
 
             database.ref("/" + zip).push(newPairing);
