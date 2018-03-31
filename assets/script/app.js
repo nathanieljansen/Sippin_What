@@ -142,6 +142,7 @@ $(function () {
         $("#image").empty();
         $("#otherWineImage1").empty();
         $("#otherWineImage2").empty();
+        $("#otherWineImage3 ").empty();
         var textInput = $(".autocomplete1").val().trim().toLowerCase();
         var wineQueryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + textInput + "&maxPrice=50";
         var wineAPI = {
