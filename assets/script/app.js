@@ -131,7 +131,14 @@ function callback(results, status) {
 $(function () {
  
   $('.parallax').parallax();
+  $(".autocomplete1").keyup(function (event) {
+    if (event.keyCode === 13) {
+      $(".searchButton").click();
+    }
+  });
+  
 $(".searchButton").click(function () {
+  
         event.preventDefault();
         $("#words").empty();
         $("#image").empty();
@@ -239,6 +246,7 @@ $(".searchButton").click(function () {
         });
         $(".autocomplete1").val("");
       });
+  
  
 
 
