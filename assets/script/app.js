@@ -174,6 +174,7 @@ $(".searchButton").click(function () {
           }
 
           else {
+            $(".whatWhat").hide();
             $(".wineSwipe").show();
             $(".notValid").empty();
             $("html, body").animate({
