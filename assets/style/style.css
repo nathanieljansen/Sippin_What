@@ -1,9 +1,11 @@
 body {
-  font-family: 'Fjalla One', sans-serif;
+  /* font-family: 'Fjalla One', sans-serif; */
   /* background: url("https://s3.favim.com/orig/44/drink-glass-love-wine-Favim.com-371290.gif") no-repeat center fixed; */
   /* background-size: cover;
   color: #5b0b0b; */
   margin-top: 4%;
+  font-family: 'Palatino-Normal-34608';
+  /* font-family: 'Marker Felt'; */
 }
 
 .autocomplete {
@@ -31,9 +33,9 @@ body {
   border-radius: 5px !important;
 }
 
-/* .active {
-  color: #5b0b0b !important;
-} */
+.pImage1 {
+  height: 150px !important;
+}
 
 a {
   color: #8f8023 !important;
@@ -70,4 +72,32 @@ a {
 
 .page-footer {
   background: #5b0b0b !important;
+}
+
+.map2 {
+  width: 100%;
+  height: 400px;
+  margin-top: 13px;
+}
+
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #8f8023 !important;
+  box-shadow: 0 1px 0 0 #8f8023 !important;
+}
+
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid #8f8023 !important;
+  box-shadow: 0 1px 0 0 #8f8023 !important;
+}
+
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #8f8023 !important;
+  box-shadow: 0 1px 0 0 #8f8023 !important;
+}
+
+#pic {
+  width: 200px;
+  padding: 4px;
+  text-align: center;
 }
